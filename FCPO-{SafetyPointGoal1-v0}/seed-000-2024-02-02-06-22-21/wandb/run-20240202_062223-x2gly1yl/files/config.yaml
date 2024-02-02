@@ -1,0 +1,124 @@
+wandb_version: 1
+
+seed:
+  desc: null
+  value: 0
+train_cfgs:
+  desc: null
+  value:
+    device: cpu
+    torch_threads: 16
+    vector_env_nums: 20
+    parallel: 1
+    total_steps: 10000000
+    epochs: 500
+algo_cfgs:
+  desc: null
+  value:
+    steps_per_epoch: 20000
+    update_iters: 1
+    inner_iters: 40
+    batch_size: 64
+    target_kl: 0.02
+    entropy_coef: 0.0
+    reward_normalize: false
+    cost_normalize: false
+    obs_normalize: true
+    kl_early_stop: true
+    use_max_grad_norm: true
+    max_grad_norm: 40.0
+    use_critic_norm: true
+    critic_norm_coef: 0.001
+    gamma: 0.99
+    cost_gamma: 0.99
+    lam: 0.95
+    lam_c: 0.95
+    clip: 0.2
+    adv_estimation_method: gae
+    standardized_rew_adv: true
+    standardized_cost_adv: true
+    penalty_coef: 0.0
+    use_cost: true
+logger_cfgs:
+  desc: null
+  value:
+    use_wandb: true
+    wandb_project: omnisafe
+    use_tensorboard: true
+    save_model_freq: 100
+    log_dir: ./runs
+    window_lens: 100
+model_cfgs:
+  desc: null
+  value:
+    weight_initialization_mode: kaiming_uniform
+    actor_type: gaussian_learning
+    linear_lr_decay: true
+    exploration_noise_anneal: false
+    std_range:
+    - 0.5
+    - 0.1
+    actor:
+      hidden_sizes:
+      - 64
+      - 64
+      activation: tanh
+      lr: 0.0003
+    critic:
+      hidden_sizes:
+      - 64
+      - 64
+      activation: tanh
+      lr: 0.0003
+admm_cfgs:
+  desc: null
+  value:
+    rho: 0.01
+    xi_lr: 0.1
+    lambda_lr: 0.0006
+    cost_limit: 25.0
+    lagrangian_multiplier_init: 0.001
+    sigma_init: 10
+exp_increment_cfgs:
+  desc: null
+  value:
+    train_cfgs:
+      parallel: 1
+      total_steps: 10000000
+      device: cpu
+      vector_env_nums: 20
+      torch_threads: 16
+exp_name:
+  desc: null
+  value: FCPO-{SafetyPointGoal1-v0}
+env_id:
+  desc: null
+  value: SafetyPointGoal1-v0
+algo:
+  desc: null
+  value: FCPO
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.13
+    cli_version: 0.16.2
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1706854943.826366
+    t:
+      1:
+      - 1
+      - 55
+      2:
+      - 1
+      - 55
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.10.13
+      5: 0.16.2
+      8:
+      - 5
+      13: linux-x86_64
